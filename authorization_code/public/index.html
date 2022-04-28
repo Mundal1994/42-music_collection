@@ -141,7 +141,7 @@
 
 						while (j < response.items[i].album.artists.length)
 						{
-							const artistElement = document.createElement('ul');
+							const artistElement = document.createElement('li');
 							artistElement.textContent = response.items[i].album.artists[j].name;
 							artistElement.style.fontWeight = "normal";
 							artistElementLabel.appendChild(artistElement);
@@ -169,12 +169,14 @@
 						trackElementLabel.style.fontWeight = "bold";
 						rowElement.append(trackElementLabel);
 						j = 0;
+						const trackElementRap = document.createElement('ol');
 						while (j < response.items[i].album.tracks.total)
 						{
-							const trackElement = document.createElement('ul');
+							const trackElement = document.createElement('li');
 							trackElement.textContent = response.items[i].album.tracks.items[j].name;
 							trackElement.style.fontWeight = "normal";
-							trackElementLabel.append(trackElement);
+							trackElementRap.append(trackElement);
+							trackElementLabel.append(trackElementRap);
 							j++;
 						}
 

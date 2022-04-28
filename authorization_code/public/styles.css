@@ -126,3 +126,7 @@ div h1 {
 	opacity: 0;
 	transform: scale(0.1, 1);
 }
+
+ol {
+	padding-left: 30px;
+}
