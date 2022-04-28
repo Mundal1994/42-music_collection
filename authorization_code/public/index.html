@@ -32,25 +32,7 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{items.[0].album.images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-			<dt>Title</dt><dd id="albumName">{{items.[0].album.name}}</dd>
-            <dt>Artist</dt><dd id="albumArtist"></dd>
-			<dt>Release date</dt><dd>{{items.[0].album.release_date}}</dd>
-			<dt>Track</dt><dd>{{items.[0].album.tracks.items.[0].name}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{items.[0].album.images.0.url}}">{{items.[0].album.images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-          </dl>
-        </div>
-      </div>
+		<h1>Here are a list of your albums</h1>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
@@ -111,20 +93,34 @@
                 },
                 success: function(response) {
 					userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
 					let i = 0;
 					let j = 0;
 
-					while (i < response.total)
+					while (i < response.total && i < response.limit)
 					{
 						j = 0;
 						/*	create div for each album	*/
 						const rowElement = document.createElement('div');
 						rowElement.setAttribute('id', 'album ' + i);
 					
+						/*	Image display on album*/
+						const imageElement = document.createElement('div');
+						imageElement.setAttribute('id', 'image');
+						const imageEle = document.createElement('img');
+						imageEle.setAttribute('class', 'media-object');
+						imageEle.setAttribute('width', '150');
+						imageEle.setAttribute('src', response.items[i].album.images[0].url);
+						imageElement.append(imageEle);
+						rowElement.append(imageElement);
+
 						/*	Title of the album made into html	*/
 						const titleLabel = document.createElement('div');
 						titleLabel.setAttribute('id', 'title');
-						titleLabel.textContent = "Title: " + response.items[i].album.name;
+						const title = document.createElement('ul');
+						titleLabel.textContent = "Title: ";
+						title.textContent = response.items[i].album.name;
+						titleLabel.append(title);
 						rowElement.append(titleLabel);
 
 						/*	artists on the album made into html	*/
