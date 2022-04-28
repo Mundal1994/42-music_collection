@@ -127,7 +127,9 @@
 						titleLabel.setAttribute('id', 'title');
 						const title = document.createElement('ul');
 						titleLabel.textContent = "Title: ";
+						titleLabel.style.fontWeight = "bold";
 						title.textContent = response.items[i].album.name;
+						title.style.fontWeight = "normal";
 						titleLabel.append(title);
 						info.append(titleLabel);
 
@@ -135,13 +137,14 @@
 						const artistElementLabel = document.createElement('div');
 						artistElementLabel.setAttribute('id', 'artist');
 						artistElementLabel.textContent = "Artist(s): ";
+						artistElementLabel.style.fontWeight = "bold";
 						info.append(artistElementLabel);
-
 
 						while (j < response.items[i].album.artists.length)
 						{
 							const artistElement = document.createElement('ul');
 							artistElement.textContent = response.items[i].album.artists[j].name;
+							artistElement.style.fontWeight = "normal";
 							artistElementLabel.appendChild(artistElement);
 							j++;
 						}
@@ -151,8 +154,10 @@
 						releaseDateElement.setAttribute('id', 'date');
 						const releaseDate = document.createElement('ul');
 						releaseDateElement.textContent = "Release date: ";
+						releaseDateElement.style.fontWeight = "bold";
 						info.append(releaseDateElement);
 						releaseDate.textContent = response.items[i].album.release_date;
+						releaseDate.style.fontWeight = "normal";
 						releaseDateElement.append(releaseDate);
 
 						infoDiv.append(info);
@@ -162,12 +167,14 @@
 						const trackElementLabel = document.createElement('div');
 						trackElementLabel.setAttribute('id', 'tracks');
 						trackElementLabel.textContent = "Tracks: ";
+						trackElementLabel.style.fontWeight = "bold";
 						rowElement.append(trackElementLabel);
 						j = 0;
 						while (j < response.items[i].album.tracks.total)
 						{
 							const trackElement = document.createElement('ul');
 							trackElement.textContent = response.items[i].album.tracks.items[j].name;
+							trackElement.style.fontWeight = "normal";
 							trackElementLabel.append(trackElement);
 							j++;
 						}
