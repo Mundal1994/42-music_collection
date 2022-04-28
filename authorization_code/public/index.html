@@ -35,16 +35,18 @@
       <h1>Logged in as {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
+          <img class="media-object" width="150" src="{{items.[0].album.images.0.url}}" />
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
             <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
+            <dt>Artist</dt><dd>{{items.[0].album.artists.[0].name}}</dd>
+            <dt>Name</dt><dd>{{items.[0].album.name}}</dd>
+			<dt>Release date</dt><dd>{{items.[0].album.release_date}}</dd>
+			<dt>Track</dt><dd>{{items.[0].album.tracks.items.[0].name}}</dd>
             <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
             <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Profile Image</dt><dd class="clearfix"><a href="{{items.[0].album.images.0.url}}">{{items.[0].album.images.0.url}}</a></dd>
             <dt>Country</dt><dd>{{country}}</dd>
           </dl>
         </div>
@@ -103,7 +105,7 @@
             });
 
             $.ajax({
-                url: 'https://api.spotify.com/v1/me',
+                url: 'https://api.spotify.com/v1/me/albums',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
@@ -139,4 +141,3 @@
     </script>
   </body>
 </html>
-
