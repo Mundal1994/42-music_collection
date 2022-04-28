@@ -40,8 +40,8 @@
         <div class="media-body">
           <dl class="dl-horizontal">
             <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Artist</dt><dd>{{items.[0].album.artists.[0].name}}</dd>
-            <dt>Name</dt><dd>{{items.[0].album.name}}</dd>
+			<dt>Title</dt><dd id="albumName">{{items.[0].album.name}}</dd>
+            <dt>Artist</dt><dd id="albumArtist"></dd>
 			<dt>Release date</dt><dd>{{items.[0].album.release_date}}</dd>
 			<dt>Track</dt><dd>{{items.[0].album.tracks.items.[0].name}}</dd>
             <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
@@ -110,7 +110,62 @@
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+					userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+					let i = 0;
+					let j = 0;
+
+					while (i < response.total)
+					{
+						j = 0;
+						/*	create div for each album	*/
+						const rowElement = document.createElement('div');
+						rowElement.setAttribute('id', 'album ' + i);
+					
+						/*	Title of the album made into html	*/
+						const titleLabel = document.createElement('div');
+						titleLabel.setAttribute('id', 'title');
+						titleLabel.textContent = "Title: " + response.items[i].album.name;
+						rowElement.append(titleLabel);
+
+						/*	artists on the album made into html	*/
+						const artistElementLabel = document.createElement('div');
+						artistElementLabel.setAttribute('id', 'artist');
+						artistElementLabel.textContent = "Artist: ";
+						rowElement.append(artistElementLabel);
+						while (j < response.items[i].album.artists.length)
+						{
+							const artistElement = document.createElement('ul');
+							artistElement.textContent = response.items[i].album.artists[j].name;
+							artistElementLabel.appendChild(artistElement);
+							j++;
+						}
+						/*	release date made into html	*/
+						const releaseDateElement = document.createElement('div');
+						releaseDateElement.setAttribute('id', 'date');
+						const releaseDate = document.createElement('ul');
+						releaseDateElement.textContent = "Release date: ";
+						rowElement.append(releaseDateElement);
+						releaseDate.textContent = response.items[i].album.release_date;
+						releaseDateElement.append(releaseDate);
+						
+						/*	tracks on album listed made into html	*/
+						const trackElementLabel = document.createElement('div');
+						trackElementLabel.setAttribute('id', 'tracks');
+						trackElementLabel.textContent = "Tracks: ";
+						rowElement.append(trackElementLabel);
+						j = 0;
+						while (j < response.items[i].album.tracks.total)
+						{
+							const trackElement = document.createElement('ul');
+							trackElement.textContent = response.items[i].album.tracks.items[j].name;
+							trackElementLabel.append(trackElement);
+							j++;
+						}
+
+						/*	prints it to the html page	*/
+						userProfilePlaceholder.append(rowElement);
+						i++;
+					}
 
                   $('#login').hide();
                   $('#loggedin').show();
