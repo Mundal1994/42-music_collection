@@ -20,7 +20,7 @@ HOW TO RUN
 
 		cd authorization_code
 
-5. run the following in the terminal
+5. run the following command in the terminal
 
 		node app.js
 

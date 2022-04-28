@@ -110,7 +110,7 @@
 				 });
  
 				 request.get(savedAlbums, function (error, response, body) {
-					 console.log(body.items[0].album.tracks);
+					 //console.log(body.items[0].album.tracks);
 				 });
  
 				 // we can also pass the token to the browser to make requests from there

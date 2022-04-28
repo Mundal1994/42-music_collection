@@ -134,7 +134,7 @@
 						/*	artists on the album made into html	*/
 						const artistElementLabel = document.createElement('div');
 						artistElementLabel.setAttribute('id', 'artist');
-						artistElementLabel.textContent = "Artist: ";
+						artistElementLabel.textContent = "Artist(s): ";
 						info.append(artistElementLabel);
 
 
@@ -155,11 +155,8 @@
 						releaseDate.textContent = response.items[i].album.release_date;
 						releaseDateElement.append(releaseDate);
 
-
 						infoDiv.append(info);
 						rowElement.append(infoDiv);
-
-
 						
 						/*	tracks on album listed made into html	*/
 						const trackElementLabel = document.createElement('div');
