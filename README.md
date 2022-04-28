@@ -9,24 +9,24 @@ HOW TO RUN
 
 1. run the following command (skip this step if nvm is already installed)
 
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
 2. restart the terminal
 3. run the command (skip this step if node is already installed)
 
-	nvm install node
+		nvm install node
 
 4. go to the authorization_code directory
 
-	cd authorization_code
+		cd authorization_code
 
 5. run the following in the terminal
 
-	node app.js
+		node app.js
 
 6. go to the following webpage on the desired browser (ex. chrome)
 
-	http://localhost:8888
+		http://localhost:8888
 
 
 You should now be able to log into your spotify account and see a list of all of your saved albums -!
