@@ -1,26 +1,26 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>RUSH - MUSIC COLLECTION</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <style type="text/css">
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-    </style>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://kit.fontawesome.com/62fb8c8d57.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+	<div class="parallax">
     <div class="container">
+
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+
+        <h1>RUSH - MUSIC COLLECTION</h1>
+		
+		<!-- <button href="/login" class="button-5" role="button">Button 5</button> -->
+        <a href="/login" class="btn btn-one">Log in with <i class="fa-brands fa-spotify"></i></a>
       </div>
       <div id="loggedin">
         <div id="user-profile">
@@ -43,6 +43,7 @@
       </dl>
     </script>
 
+</div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
@@ -102,17 +103,24 @@
 						j = 0;
 						/*	create div for each album	*/
 						const rowElement = document.createElement('div');
-						rowElement.setAttribute('id', 'album ' + i);
+						rowElement.setAttribute('class', 'album_wrapper');
 					
+						const infoDiv = document.createElement('div');
+						infoDiv.setAttribute('class', 'infoDiv');
+
 						/*	Image display on album*/
 						const imageElement = document.createElement('div');
 						imageElement.setAttribute('id', 'image');
 						const imageEle = document.createElement('img');
 						imageEle.setAttribute('class', 'media-object');
-						imageEle.setAttribute('width', '150');
+						imageEle.setAttribute('width', '200');
 						imageEle.setAttribute('src', response.items[i].album.images[0].url);
 						imageElement.append(imageEle);
-						rowElement.append(imageElement);
+						infoDiv.append(imageElement);
+						
+
+						const info = document.createElement('div');
+						info.setAttribute('div', 'info');
 
 						/*	Title of the album made into html	*/
 						const titleLabel = document.createElement('div');
@@ -121,13 +129,15 @@
 						titleLabel.textContent = "Title: ";
 						title.textContent = response.items[i].album.name;
 						titleLabel.append(title);
-						rowElement.append(titleLabel);
+						info.append(titleLabel);
 
 						/*	artists on the album made into html	*/
 						const artistElementLabel = document.createElement('div');
 						artistElementLabel.setAttribute('id', 'artist');
 						artistElementLabel.textContent = "Artist: ";
-						rowElement.append(artistElementLabel);
+						info.append(artistElementLabel);
+
+
 						while (j < response.items[i].album.artists.length)
 						{
 							const artistElement = document.createElement('ul');
@@ -135,14 +145,21 @@
 							artistElementLabel.appendChild(artistElement);
 							j++;
 						}
+
 						/*	release date made into html	*/
 						const releaseDateElement = document.createElement('div');
 						releaseDateElement.setAttribute('id', 'date');
 						const releaseDate = document.createElement('ul');
 						releaseDateElement.textContent = "Release date: ";
-						rowElement.append(releaseDateElement);
+						info.append(releaseDateElement);
 						releaseDate.textContent = response.items[i].album.release_date;
 						releaseDateElement.append(releaseDate);
+
+
+						infoDiv.append(info);
+						rowElement.append(infoDiv);
+
+
 						
 						/*	tracks on album listed made into html	*/
 						const trackElementLabel = document.createElement('div');

@@ -1,0 +1,128 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	font-family: 'Montserrat';
+	font-size: 20px;
+	font-weight: 200;
+	background-color: #fff9ec;
+}
+
+#login,
+#loggedin {
+	display: none;
+}
+i {
+	font-weight: 300;
+}
+
+#login {
+	padding-top: 50%;
+	padding-left: 5%;
+}
+
+.text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 500px;
+}
+
+.parallax {
+	/* Set a specific height */
+	/* min-height: 500px; */
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.album_wrapper {
+	margin: 10px;
+	padding: 30px;
+	border-bottom: 1px solid #5d2a42;
+}
+
+div h1 {
+	color: #5d2a42;
+	font-size: 5rem;
+	font-weight: 800;
+}
+
+.btn-one {
+	color: #26030f;
+	font-size: 2rem;
+	transition: all 0.3s;
+	position: relative;
+	line-height: 55px;
+}
+
+.btn-one span {
+	transition: all 0.3s;
+}
+
+.btn-one::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #693d12;
+	border-bottom-color: #693d12;
+	transform: scale(0.1, 1);
+}
+
+.infoDiv {
+	display: flex;
+	gap: 30px;
+	font-weight: 500;
+}
+
+.info {
+	display: flex;
+}
+
+#title, #date {
+	display: flex;
+	gap: 10px;
+}
+
+
+.btn-one:hover span {
+	letter-spacing: 3px;
+}
+
+.btn-one:hover::before {
+	opacity: 1;
+	transform: scale(1, 1);
+}
+
+.btn-one::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	transition: all 0.3s;
+	background-color: rgba(234, 184, 133, 0.205);
+}
+
+.btn-one:hover::after {
+	opacity: 0;
+	transform: scale(0.1, 1);
+}
