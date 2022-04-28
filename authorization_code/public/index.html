@@ -97,92 +97,103 @@
 
 					let i = 0;
 					let j = 0;
-
-					while (i < response.total && i < response.limit)
+					let remainAlbum = response.total;
+					while (i < remainAlbum)
 					{
-						j = 0;
-						/*	create div for each album	*/
-						const rowElement = document.createElement('div');
-						rowElement.setAttribute('class', 'album_wrapper');
-					
-						const infoDiv = document.createElement('div');
-						infoDiv.setAttribute('class', 'infoDiv');
-
-						/*	Image display on album*/
-						const imageElement = document.createElement('div');
-						imageElement.setAttribute('id', 'image');
-						const imageEle = document.createElement('img');
-						imageEle.setAttribute('class', 'media-object');
-						imageEle.setAttribute('width', '200');
-						imageEle.setAttribute('src', response.items[i].album.images[0].url);
-						imageElement.append(imageEle);
-						infoDiv.append(imageElement);
-
-						const info = document.createElement('div');
-						info.setAttribute('div', 'info');
-
-						/*	Title of the album made into html	*/
-						const titleLabel = document.createElement('div');
-						titleLabel.setAttribute('id', 'title');
-						const title = document.createElement('ul');
-						titleLabel.textContent = "Title: ";
-						titleLabel.style.fontWeight = "bold";
-						title.textContent = response.items[i].album.name;
-						title.style.fontWeight = "normal";
-						titleLabel.append(title);
-						info.append(titleLabel);
-
-						/*	artists on the album made into html	*/
-						const artistElementLabel = document.createElement('div');
-						artistElementLabel.setAttribute('id', 'artist');
-						artistElementLabel.textContent = "Artist(s): ";
-						artistElementLabel.style.fontWeight = "bold";
-						info.append(artistElementLabel);
-
-						while (j < response.items[i].album.artists.length)
+						while (i < remainAlbum && i < response.limit)
 						{
-							const artistElement = document.createElement('li');
-							artistElement.textContent = response.items[i].album.artists[j].name;
-							artistElement.style.fontWeight = "normal";
-							artistElementLabel.appendChild(artistElement);
-							j++;
-						}
-
-						/*	release date made into html	*/
-						const releaseDateElement = document.createElement('div');
-						releaseDateElement.setAttribute('id', 'date');
-						const releaseDate = document.createElement('ul');
-						releaseDateElement.textContent = "Release date: ";
-						releaseDateElement.style.fontWeight = "bold";
-						info.append(releaseDateElement);
-						releaseDate.textContent = response.items[i].album.release_date;
-						releaseDate.style.fontWeight = "normal";
-						releaseDateElement.append(releaseDate);
-
-						infoDiv.append(info);
-						rowElement.append(infoDiv);
+							j = 0;
+							/*	create div for each album	*/
+							const rowElement = document.createElement('div');
+							rowElement.setAttribute('class', 'album_wrapper');
 						
-						/*	tracks on album listed made into html	*/
-						const trackElementLabel = document.createElement('div');
-						trackElementLabel.setAttribute('id', 'tracks');
-						trackElementLabel.textContent = "Tracks: ";
-						trackElementLabel.style.fontWeight = "bold";
-						rowElement.append(trackElementLabel);
-						j = 0;
-						const trackElementRap = document.createElement('ol');
-						while (j < response.items[i].album.tracks.total)
-						{
-							const trackElement = document.createElement('li');
-							trackElement.textContent = response.items[i].album.tracks.items[j].name;
-							trackElement.style.fontWeight = "normal";
-							trackElementRap.append(trackElement);
-							trackElementLabel.append(trackElementRap);
-							j++;
-						}
+							const infoDiv = document.createElement('div');
+							infoDiv.setAttribute('class', 'infoDiv');
 
-						/*	prints it to the html page	*/
-						userProfilePlaceholder.append(rowElement);
-						i++;
+							/*	Image display on album*/
+							const imageElement = document.createElement('div');
+							imageElement.setAttribute('id', 'image');
+							const imageEle = document.createElement('img');
+							imageEle.setAttribute('class', 'media-object');
+							imageEle.setAttribute('width', '200');
+							imageEle.setAttribute('src', response.items[i].album.images[0].url);
+							imageElement.append(imageEle);
+							infoDiv.append(imageElement);
+
+							const info = document.createElement('div');
+							info.setAttribute('div', 'info');
+
+							/*	Title of the album made into html	*/
+							const titleLabel = document.createElement('div');
+							titleLabel.setAttribute('id', 'title');
+							const title = document.createElement('ul');
+							titleLabel.textContent = "Title: ";
+							titleLabel.style.fontWeight = "bold";
+							title.textContent = response.items[i].album.name;
+							title.style.fontWeight = "normal";
+							titleLabel.append(title);
+							info.append(titleLabel);
+
+							/*	artists on the album made into html	*/
+							const artistElementLabel = document.createElement('div');
+							artistElementLabel.setAttribute('id', 'artist');
+							artistElementLabel.textContent = "Artist(s): ";
+							artistElementLabel.style.fontWeight = "bold";
+							info.append(artistElementLabel);
+
+							while (j < response.items[i].album.artists.length)
+							{
+								const artistElement = document.createElement('li');
+								artistElement.textContent = response.items[i].album.artists[j].name;
+								artistElement.style.fontWeight = "normal";
+								artistElementLabel.appendChild(artistElement);
+								j++;
+							}
+
+							/*	release date made into html	*/
+							const releaseDateElement = document.createElement('div');
+							releaseDateElement.setAttribute('id', 'date');
+							const releaseDate = document.createElement('ul');
+							releaseDateElement.textContent = "Release date: ";
+							releaseDateElement.style.fontWeight = "bold";
+							info.append(releaseDateElement);
+							releaseDate.textContent = response.items[i].album.release_date;
+							releaseDate.style.fontWeight = "normal";
+							releaseDateElement.append(releaseDate);
+
+							infoDiv.append(info);
+							rowElement.append(infoDiv);
+							
+							/*	tracks on album listed made into html	*/
+							const trackElementLabel = document.createElement('div');
+							trackElementLabel.setAttribute('id', 'tracks');
+							trackElementLabel.textContent = "Tracks: ";
+							trackElementLabel.style.fontWeight = "bold";
+							rowElement.append(trackElementLabel);
+							j = 0;
+							const trackElementRap = document.createElement('ol');
+							let remain = response.items[i].album.tracks.total;
+							while (j < remain)
+							{
+								while (j < remain && j < response.items[i].album.tracks.limit)
+								{
+									const trackElement = document.createElement('li');
+									trackElement.textContent = response.items[i].album.tracks.items[j].name;
+									trackElement.style.fontWeight = "normal";
+									trackElementRap.append(trackElement);
+									trackElementLabel.append(trackElementRap);
+									j++;
+								}
+								remain -= j;
+								j = 0;
+							}
+
+							/*	prints it to the html page	*/
+							userProfilePlaceholder.append(rowElement);
+							i++;
+						}
+						remainAlbum -= i;
+						i = 0;
 					}
 
                   $('#login').hide();
