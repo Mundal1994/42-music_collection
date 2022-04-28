@@ -32,7 +32,7 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-		<h1>Here are a list of your albums</h1>
+		<h1>YOUR MUSIC COLLECTION</h1>
     </script>
 
     <script id="oauth-template" type="text/x-handlebars-template">
@@ -117,7 +117,6 @@
 						imageEle.setAttribute('src', response.items[i].album.images[0].url);
 						imageElement.append(imageEle);
 						infoDiv.append(imageElement);
-						
 
 						const info = document.createElement('div');
 						info.setAttribute('div', 'info');
