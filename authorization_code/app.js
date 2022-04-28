@@ -57,6 +57,13 @@ app.get('/login', function(req, res) {
     }));
 });
 
+function printAlbum(album)
+{
+	console.log("print album: ");
+	console.log(album.id);
+	
+}
+
 app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
@@ -111,7 +118,15 @@ app.get('/callback', function(req, res) {
 
 		request.get(options2, function(error, response, body) {
 			console.log(body);
-		  });
+			console.log("new stuff:");
+			let i = 0;
+			while (i < body.total)
+			{
+				console.log(body.items[i].album);
+				printAlbum(body.items[i].album);
+				i++;
+			}
+		});
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
