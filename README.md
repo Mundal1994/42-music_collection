@@ -1,10 +1,41 @@
 # music_collection
 
-how to run:
+ABOUT
 
-1. Go to VSCode (Visual Studio Code).
-2. Go to extensions and install 'Live Server'.
-3. Press 'index.html' or another file from folder you wish to run.
-4. Open the 'Go Live' (usually button can be found at bottom right corner)
+A tool build with the use of API for Spotify to display a list of a users saved albums in the form of cover picture, title, artists, release-year and list of tracks.
 
-You should be good to play the game / use the solver function !
+
+HOW TO RUN
+
+1. run the following command (skip this step if nvm is already installed)
+
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+2. restart the terminal
+3. run the command (skip this step if node is already installed)
+
+	nvm install node
+
+4. go to the authorization_code directory
+
+	cd authorization_code
+
+5. run the following in the terminal
+
+	node app.js
+
+6. go to the following webpage on the desired browser (ex. chrome)
+
+	http://localhost:8888
+
+
+You should now be able to log into your spotify account and see a list of all of your saved albums -!
+
+If you wish to save the list in pdf form for later use do the following steps
+
+1. open chrome
+2. go to the following webpage: http://localhost:8888
+3. click the 3 dots in the upper right hand corner, and select 'Print...'
+4. make sure 'Destination' is set to 'Save as PDF' and press 'Save'
+
+You should now have a saved file on your computer with a list of your spotify albums!
